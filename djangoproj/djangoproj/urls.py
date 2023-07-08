@@ -15,9 +15,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from . import views
+from app.views import submit_custom_time
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', views.index, name='index')
+    path('submit-custom-time/', submit_custom_time, name='submit_custom_time'),
 ]
+

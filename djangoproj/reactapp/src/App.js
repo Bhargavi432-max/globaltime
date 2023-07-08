@@ -1,25 +1,46 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from "react";
+import TimeInput from "./Input";
 
-function App() {
+const WorldClock = () => {
+  const [timeZones, setTimeZones] = useState([]);
+  let [datee, setDate] = useState(new Date());
+
+  useEffect(() => {
+    // Define the time zones you want to display
+    const zones = [
+      { name: "India", timeZone: "Asia/Kolkata" },
+      { name: "Hong Kong", timeZone: "Asia/Hong_Kong" },
+      { name: "US", timeZone: "America/New_York" }
+    ];
+    setTimeZones(zones);
+  }, []);
+
+  useEffect(() => {
+    var timer = setInterval(() => setDate(new Date()), 1000);
+    return function cleanup() {
+      clearInterval(timer);
+    };
+  });
+
+  const getTimeString = (timeZone) => {
+    const date = datee.toLocaleString("en-US", { timeZone });
+    const options = { hour: "numeric", minute: "numeric", second: "numeric" };
+    return new Intl.DateTimeFormat("en-US", options).format(new Date(date));
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
+    <div>
+      <h2>World Clock</h2>
+      {timeZones.map((zone) => (
+        <p key={zone.name}>
+          {zone.name}: {getTimeString(zone.timeZone)}
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      ))}
+      <div>
+        <TimeInput />
+      </div>
     </div>
   );
-}
+};
 
-export default App;
+export default WorldClock;
