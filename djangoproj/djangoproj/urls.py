@@ -13,11 +13,12 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.contrib import admin
 from django.urls import path
 from app.views import submit_custom_time
-
+from .views import index, api_view
 urlpatterns = [
-    path('submit-custom-time/', submit_custom_time, name='submit_custom_time'),
+    path('', submit_custom_time, name='home'),
+    path('', index, name='index'),  # Route to the index view serving the React app
+    path('api/endpoint/', api_view),
+    # Other URL patterns...
 ]
-

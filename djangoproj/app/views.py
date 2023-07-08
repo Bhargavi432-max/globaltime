@@ -1,7 +1,9 @@
 from django.shortcuts import render
 from django.http import JsonResponse
-
 from app.models import Time
+
+Time = 'app.Time'
+
 
 def submit_custom_time(request):
     if request.method == 'POST':
@@ -12,9 +14,9 @@ def submit_custom_time(request):
         am_pm = request.POST.get('am_pm')
 
         # Save custom time to the database
-        custom_time = Time(hours=hours, minutes=minutes, seconds=seconds, am_pm=am_pm)
-        custom_time.save()
-
-        return JsonResponse({'success': True})
+        Time.objects.create(hours=hours, minutes=minutes, seconds=seconds, am_pm=am_pm)
+        
+        return JsonResponse({"message": "Custom time saved successfully"})
     else:
-        return JsonResponse({'success': False})
+        return JsonResponse({"error": "Invalid request method"})
+

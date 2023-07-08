@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'corsheaders',
+    'app.apps.AppConfig',
 ]
 
 MIDDLEWARE = [
@@ -52,7 +53,6 @@ MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
 ]
-
 
 CORS_ORIGIN_ALLOW_ALL = True
 
@@ -129,6 +129,10 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+
 STATICFILES_DIRS =[
-    os.path.join(BASE_DIR, 'reactapp/build/static')
+    os.path.join(BASE_DIR, 'reactapp/build/static'),
+    os.path.join(BASE_DIR, 'path_to_react_build_folder', 'static'),
 ]
