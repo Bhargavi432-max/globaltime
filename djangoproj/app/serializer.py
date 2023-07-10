@@ -1,7 +1,7 @@
 from rest_framework import serializers
-from .models import *
+from app.models import *
 
-class ReactSerializer(serializers.ModelSerializer):
+class TimeEntrySerializer(serializers.ModelSerializer):
     class Meta:
-        model = React
-        fields = []
+        model = TimeEntry
+        fields = ['hour','minute','ampm']
