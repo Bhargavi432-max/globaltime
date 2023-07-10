@@ -32,17 +32,6 @@ const DisplayTime = ({ dat }) => {
     const options = { hour: "numeric", minute: "numeric", second: "numeric" };
     return new Intl.DateTimeFormat("en-US", options).format(new Date(date));
   };
-
-  // return (
-  //   <div>
-  //     <h2>World Clock</h2>
-  //     {timeZones.map((zone) => (
-  //       <p key={zone.name}>
-  //         {zone.name}: {getTimeString(zone.timeZone)}
-  //       </p>
-  //     ))}
-  //   </div>
-  // );
   return (
     <>
     <Box sx={{ width: '100%' }}>
