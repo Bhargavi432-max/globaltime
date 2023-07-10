@@ -48,29 +48,23 @@ const DisplayTime = ({ dat }) => {
     <Box sx={{ width: '100%' }}>
     <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
       <Grid item xs={12}>
-        <Item>WORLD CLOCK</Item>
-      </Grid>
-      <Grid item xs={4}>
         <Item>
-          <Typography>Hong Kong</Typography>
-          <Typography>Time</Typography>
+        <h1>WORLD CLOCK</h1>
         </Item>
       </Grid>
+        {timeZones.map((zone) => (
       <Grid item xs={4}>
         <Item>
-          <Typography>India</Typography>
-          <Typography>Time</Typography>
+          <Typography>
+            <h3>{zone.name}</h3>
+            </Typography>
+          <Typography>{getTimeString(zone.timeZone)}</Typography>
         </Item>
       </Grid>
-      <Grid item xs={4}>
-        <Item>
-        <Typography>US</Typography>
-          <Typography>Time</Typography>
-        </Item>
-      </Grid>
+))}
     </Grid>
   </Box>
- </>
+  </>
   );
 };
 
