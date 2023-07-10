@@ -3,6 +3,7 @@ import DisplayTime from './DisplayTime';
 import WorldClock from './WorldClock';
 import axios from "axios";
 
+
 const TimeInputField = () => {
   const [hour, setHour] = useState('');
   const [minute, setMinute] = useState('');
@@ -88,7 +89,7 @@ const TimeInputField = () => {
   
   return (
     <>
-    
+      {showCustomTime ? <DisplayTime dat={newDate} /> : <WorldClock />}
       <form onSubmit={handleTimeSubmit} style={{ marginTop: '20px' }}>
         <label>
           Hour:
@@ -108,7 +109,7 @@ const TimeInputField = () => {
         <button onClick={handleCustomChange} type="submit">Submit</button>
       </form>
       
-      {showCustomTime ? <DisplayTime dat={newDate} /> : <WorldClock />}
+      
     </>
   );
 };
